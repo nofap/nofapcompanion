@@ -13,10 +13,12 @@ tmux send-keys "tail -f log/development.log" C-m
 
 # Setup a window for Ember server
 tmux new-window -t $SESSION:1 -n 'frontend'
+tmux send-keys "cd frontend" C-m
 tmux send-keys "ember server" C-m
 
 # Setup a window to start working
 tmux new-window -t $SESSION:2
+tmux send-keys "cd frontend" C-m
 
 # Attach to session
 tmux attach-session -t $SESSION
