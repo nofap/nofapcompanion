@@ -1,0 +1,22 @@
+#!/bin/bash
+SESSION=nofapcompanion
+
+tmux new-session -d -s $SESSION
+
+# Setup a window for Rails server and log file
+tmux rename-window -t $SESSION:0 'backend'
+tmux split-window -h
+tmux select-pane -t 0
+tmux send-keys "spring rails s" C-m
+tmux select-pane -t 1
+tmux send-keys "tail -f log/development.log" C-m
+
+# Setup a window for Ember server
+tmux new-window -t $SESSION:1 -n 'frontend'
+tmux send-keys "ember server" C-m
+
+# Setup a window to start working
+tmux new-window -t $SESSION:2
+
+# Attach to session
+tmux attach-session -t $SESSION
