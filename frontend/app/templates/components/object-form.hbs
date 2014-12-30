@@ -1,0 +1,10 @@
+{{yield}}
+
+{{! Show generic errors at the end of the form}}
+{{#if errors.generic}}
+  <p class="error">{{errors.generic.firstObject}}</p>
+{{/if}}
+
+<div class="wrapper-submit">
+  <button type="submit" {{bind-attr disabled=loading}}>{{buttonLabel}}</button>
+</div>
